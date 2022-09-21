@@ -1,0 +1,20 @@
+- hosts: all
+  name: Setup Zuul environment
+  roles:
+    - add-build-sshkey
+    - start-zuul-console
+    - ensure-output-dirs
+    - log-inventory
+
+- hosts: all
+  name: Prepare workspace
+  pre_tasks:
+    - name: Install packages
+      become: true
+      package:
+        name:
+          - git
+          - rsync
+        state: present
+  roles:
+    - prepare-workspace-git

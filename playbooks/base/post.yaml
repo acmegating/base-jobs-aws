@@ -1,0 +1,9 @@
+- hosts: all
+  roles:
+    - fetch-output
+    - merge-output-to-logs
+
+- hosts: all
+  ignore_errors: yes
+  roles:
+    - remove-build-sshkey

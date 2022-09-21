@@ -1,0 +1,5 @@
+- nodeset:
+    name: debian-10
+    nodes:
+      - name: debian-10
+        label: debian-10

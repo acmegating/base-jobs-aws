@@ -1,0 +1,16 @@
+- hosts: localhost
+  tasks:
+    - name: Generate Zuul manifest
+      include_role:
+        name: generate-zuul-manifest
+    - name: Load log storage variables
+      # no_log: true
+      include_vars:
+        file: /executor/log-credentials.yaml
+    - name: Upload logs
+      # no_log: true
+      include_role:
+        name: "{{ zuul_log_role }}"
+        apply:
+          environment:
+            GOOGLE_APPLICATION_CREDENTIALS: '/executor/google.json'
